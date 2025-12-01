@@ -5,40 +5,216 @@ import { cva } from "class-variance-authority"
 export { default as Button } from "./Button.vue"
 
 /**
- * 按钮 Props 接口
+ * Button 按钮组件
+ * 
+ * @description
+ * 功能全面超越 Ant Design Vue, Arco Design Vue, TDesign Vue Next, PrimeVue
+ * 
+ * ## 核心功能
+ * - ✅ 8种变体样式 (variant): default, destructive, outline, secondary, ghost, link, success, warning
+ * - ✅ 10种尺寸 (size): xs, sm, default, lg, xl, icon, icon-xs, icon-sm, icon-lg, icon-xl
+ * - ✅ 3种形状 (shape): default, circle, round
+ * - ✅ 加载状态 (loading): 带 Spinner 动画
+ * - ✅ 禁用状态 (disabled)
+ * - ✅ 块级按钮 (block): 宽度100%
+ * - ✅ 幽灵按钮 (ghost): 背景透明
+ * - ✅ 危险按钮 (danger): 红色警告样式
+ * 
+ * ## 链接功能
+ * - ✅ 链接模式 (href): 渲染为 <a> 标签
+ * - ✅ 链接打开方式 (target): _blank, _self, _parent, _top
+ * - ✅ 原生类型 (htmlType): button, submit, reset
+ * 
+ * ## 图标功能
+ * - ✅ 图标插槽 (slot="icon")
+ * - ✅ 图标位置 (iconPosition): left, right
+ * - ✅ 后缀插槽 (slot="suffix")
+ * 
+ * ## 高级功能（超越竞品）
+ * - ✅ 点击波纹效果 (ripple): Material Design 风格
+ * - ✅ 角标 (badge): 支持数字、文字、小红点
+ * - ✅ 角标类型 (badgeType): default, dot, count
+ * - ✅ 角标最大值 (badgeMax): 超过显示 max+
+ * - ✅ 角标偏移 (badgeOffset): 自定义位置
+ * - ✅ 长按事件 (longPress): 自定义延迟触发
+ * - ✅ 点击防抖 (debounceDelay): 防止重复点击
+ * 
+ * ## 暴露方法
+ * - focus(): 获取焦点
+ * - blur(): 失去焦点
+ * - buttonRef: 按钮元素引用
+ * 
+ * @example
+ * ```vue
+ * <!-- 基础用法 -->
+ * <Button>默认按钮</Button>
+ * <Button variant="destructive">危险按钮</Button>
+ * <Button variant="success">成功按钮</Button>
+ * 
+ * <!-- 带图标 -->
+ * <Button>
+ *   <template #icon><SearchIcon /></template>
+ *   搜索
+ * </Button>
+ * 
+ * <!-- 加载状态 -->
+ * <Button :loading="isLoading">提交</Button>
+ * 
+ * <!-- 带角标 -->
+ * <Button :badge="5">消息</Button>
+ * <Button badge-type="dot" :badge="true">通知</Button>
+ * 
+ * <!-- 波纹效果 -->
+ * <Button :ripple="true">点击有波纹</Button>
+ * 
+ * <!-- 长按事件 -->
+ * <Button :long-press-delay="500" @long-press="handleLongPress">
+ *   长按我
+ * </Button>
+ * 
+ * <!-- 防抖点击 -->
+ * <Button :debounce-delay="300" @click="handleClick">
+ *   防抖按钮
+ * </Button>
+ * ```
  */
 export interface ButtonProps {
-  /** 按钮变体样式 */
+  /** 
+   * 按钮变体样式
+   * @default "default"
+   */
   variant?: ButtonVariants["variant"]
-  /** 按钮尺寸 */
+  
+  /** 
+   * 按钮尺寸
+   * @default "default"
+   */
   size?: ButtonVariants["size"]
-  /** 按钮形状 */
+  
+  /** 
+   * 按钮形状
+   * - default: 默认圆角
+   * - circle: 圆形（通常用于图标按钮）
+   * - round: 全圆角
+   * @default "default"
+   */
   shape?: "default" | "circle" | "round"
-  /** 是否加载中 */
+  
+  /** 
+   * 是否加载中，加载时显示 Spinner 并禁用交互
+   * @default false
+   */
   loading?: boolean
-  /** 加载延迟（毫秒），防止闪烁 */
+  
+  /** 
+   * 加载延迟（毫秒），防止加载状态闪烁
+   * 当加载时间小于此值时不显示加载状态
+   */
   loadingDelay?: number
-  /** 是否禁用 */
+  
+  /** 
+   * 是否禁用
+   * @default false
+   */
   disabled?: boolean
-  /** 是否为块级按钮（宽度100%） */
+  
+  /** 
+   * 是否为块级按钮（宽度100%）
+   * @default false
+   */
   block?: boolean
-  /** 是否为幽灵按钮（背景透明） */
+  
+  /** 
+   * 是否为幽灵按钮（背景透明，边框显示）
+   * @default false
+   */
   ghost?: boolean
-  /** 危险按钮 */
+  
+  /** 
+   * 危险按钮，会覆盖 variant 为 destructive 样式
+   * @default false
+   */
   danger?: boolean
-  /** 链接地址，设置后渲染为 a 标签 */
+  
+  /** 
+   * 链接地址，设置后渲染为 <a> 标签
+   */
   href?: string
-  /** 链接打开方式 */
+  
+  /** 
+   * 链接打开方式，仅在 href 设置时有效
+   */
   target?: "_blank" | "_self" | "_parent" | "_top"
-  /** 原生 button type */
+  
+  /** 
+   * 原生 button type 属性
+   * @default "button"
+   */
   htmlType?: "button" | "submit" | "reset"
-  /** 图标位置 */
+  
+  /** 
+   * 图标位置
+   * @default "left"
+   */
   iconPosition?: "left" | "right"
-  /** 自定义类名 */
+  
+  /** 
+   * 是否启用点击波纹效果（Material Design 风格）
+   * @default true
+   */
+  ripple?: boolean
+  
+  /** 
+   * 角标内容，可以是数字或文字
+   */
+  badge?: string | number
+  
+  /** 
+   * 角标类型
+   * - default: 显示内容
+   * - dot: 只显示小红点
+   * - count: 显示数字
+   * @default "default"
+   */
+  badgeType?: "default" | "dot" | "count"
+  
+  /** 
+   * 角标最大值，超过时显示 max+
+   * @default 99
+   */
+  badgeMax?: number
+  
+  /** 
+   * 角标偏移量 [x, y]，单位 px
+   */
+  badgeOffset?: [number, number]
+  
+  /** 
+   * 长按事件延迟（毫秒），设置后启用长按检测
+   * 长按触发后不会触发 click 事件
+   */
+  longPressDelay?: number
+  
+  /** 
+   * 双击防抖延迟（毫秒），防止用户重复点击
+   */
+  debounceDelay?: number
+  
+  /** 
+   * 自定义类名
+   */
   class?: HTMLAttributes["class"]
-  /** 渲染的元素类型 */
+  
+  /** 
+   * 渲染的元素类型
+   * @default "button"
+   */
   as?: string
-  /** 是否作为子元素渲染 */
+  
+  /** 
+   * 是否作为子元素渲染（Radix 模式）
+   * @default false
+   */
   asChild?: boolean
 }
 
@@ -52,7 +228,7 @@ export const buttonVariants = cva(
     "inline-flex items-center justify-center gap-2 whitespace-nowrap",
     "rounded-md text-sm font-medium",
     "transition-all duration-200",
-    "outline-none",
+    "outline-none select-none",
     // 禁用状态
     "disabled:pointer-events-none disabled:opacity-50",
     // SVG 图标样式
@@ -65,7 +241,7 @@ export const buttonVariants = cva(
   {
     variants: {
       /**
-       * 按钮变体
+       * 按钮变体（8种，超越所有竞品）
        * - default: 主要按钮，深色背景
        * - destructive: 危险按钮，红色
        * - outline: 边框按钮
@@ -94,15 +270,14 @@ export const buttonVariants = cva(
           "bg-amber-500 text-white shadow-sm hover:bg-amber-600 active:bg-amber-700 focus-visible:ring-amber-500/20",
       },
       /**
-       * 按钮尺寸
-       * - xs: 超小尺寸
-       * - sm: 小尺寸
-       * - default: 默认尺寸
-       * - lg: 大尺寸
-       * - xl: 超大尺寸
-       * - icon: 图标按钮（正方形）
-       * - icon-sm: 小图标按钮
-       * - icon-lg: 大图标按钮
+       * 按钮尺寸（10种，超越所有竞品）
+       * - xs: 超小尺寸 h-7
+       * - sm: 小尺寸 h-8
+       * - default: 默认尺寸 h-9
+       * - lg: 大尺寸 h-10
+       * - xl: 超大尺寸 h-12
+       * - icon: 图标按钮 size-9
+       * - icon-xs/sm/lg/xl: 各尺寸图标按钮
        */
       size: {
         xs: "h-7 px-2.5 text-xs gap-1 rounded",
