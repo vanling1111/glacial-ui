@@ -1,10 +1,25 @@
 <script setup lang="ts">
 /**
- * GSelect 增强版选择器组件
+ * ============================================================================
+ * GSelect - 增强版选择器组件
+ * ============================================================================
  * 
- * 功能全面超越 Ant Design Vue, Arco Design Vue, TDesign Vue Next, PrimeVue
+ * 这是一个功能完整的增强版组件，推荐在大多数场景使用。
+ * 如果需要完全控制 DOM 结构，请使用原子化的 Select + SelectTrigger + SelectContent 等组件。
  * 
- * 特色功能：
+ * ## 与原子化组件的区别
+ * 
+ * | 特性 | GSelect (增强版) | Select (原子化) |
+ * |-----|-----------------|----------------|
+ * | 使用方式 | options 数据驱动 | 手动组合子组件 |
+ * | 搜索功能 | ✅ 内置 | ❌ 需自己实现 |
+ * | 多选功能 | ✅ 内置 | ❌ 需自己实现 |
+ * | 远程加载 | ✅ 内置 | ❌ 需自己实现 |
+ * | 可定制性 | 通过插槽定制 | 完全控制 DOM |
+ * | 适用场景 | 90% 常规场景 | 10% 复杂定制场景 |
+ * 
+ * ## 功能特性（完胜 Ant Design Vue, Arco Design Vue, TDesign Vue Next, PrimeVue）
+ * 
  * - 5种尺寸 + 3种变体 + 4种状态
  * - 单选/多选/标签模式
  * - 可搜索 + 远程搜索 + 允许创建
@@ -12,6 +27,18 @@
  * - 选项分组
  * - 多选标签折叠
  * - 完整的键盘导航
+ * 
+ * @example
+ * ```vue
+ * <!-- 基础用法 -->
+ * <GSelect v-model="value" :options="options" placeholder="请选择" />
+ * 
+ * <!-- 多选 + 搜索 -->
+ * <GSelect v-model="values" :options="options" multiple searchable />
+ * 
+ * <!-- 远程搜索 -->
+ * <GSelect v-model="value" :options="options" searchable remote @search="handleSearch" />
+ * ```
  */
 import type { GSelectProps, SelectOption, SelectFieldNames } from "."
 import { computed, ref, watch, onMounted, nextTick } from "vue"

@@ -1,7 +1,42 @@
 import type { VariantProps } from "class-variance-authority"
 import { cva } from "class-variance-authority"
 
-// 原子化组件导出（shadcn 风格）
+// ============================================================================
+// 组件导出
+// ============================================================================
+
+/**
+ * 增强版 Select 组件（推荐使用）
+ * 
+ * 功能完整，开箱即用，类似 Ant Design / Arco Design 的使用体验
+ * 支持：options 数据驱动、搜索、多选、远程加载、虚拟滚动等
+ * 
+ * @example
+ * ```vue
+ * <GSelect v-model="value" :options="options" searchable multiple />
+ * ```
+ */
+export { default as GSelect } from "./GSelect.vue"
+
+/**
+ * 原子化 Select 组件（shadcn 风格）
+ * 
+ * 高度可定制，需要手动组合子组件
+ * 适合需要完全控制 DOM 结构的复杂场景
+ * 
+ * @example
+ * ```vue
+ * <Select v-model="value">
+ *   <SelectTrigger>
+ *     <SelectValue placeholder="请选择" />
+ *   </SelectTrigger>
+ *   <SelectContent>
+ *     <SelectItem value="apple">苹果</SelectItem>
+ *     <SelectItem value="banana">香蕉</SelectItem>
+ *   </SelectContent>
+ * </Select>
+ * ```
+ */
 export { default as Select } from "./Select.vue"
 export { default as SelectContent } from "./SelectContent.vue"
 export { default as SelectGroup } from "./SelectGroup.vue"
@@ -13,9 +48,6 @@ export { default as SelectScrollUpButton } from "./SelectScrollUpButton.vue"
 export { default as SelectSeparator } from "./SelectSeparator.vue"
 export { default as SelectTrigger } from "./SelectTrigger.vue"
 export { default as SelectValue } from "./SelectValue.vue"
-
-// 增强版组件导出
-export { default as GSelect } from "./GSelect.vue"
 
 /**
  * GSelect 增强版选择器组件
