@@ -59,7 +59,7 @@ async function buildRegistry(opts: z.infer<typeof buildOptionsSchema>) {
         `A ${highlighter.info(
           "components.json",
         )} file is required to build the registry. Run ${highlighter.info(
-          "shadcn init",
+          "glacial-ui init",
         )} to create one.`,
       )
       logger.break()
@@ -123,7 +123,7 @@ async function buildRegistry(opts: z.infer<typeof buildOptionsSchema>) {
 
       // Add the schema to the registry item.
       registryItem.$schema
-        = "https://shadcn-vue.com/schema/registry-item.json"
+        = "https://glacial-ui.dev/schema/registry-item.json"
 
       for (const file of registryItem.files) {
         const absPath = path.resolve(resolvePaths.cwd, file.path)

@@ -185,7 +185,7 @@ export async function recursivelyResolveFileImports(
       target: "",
     }
 
-    // TODO (shadcn): fix this.
+    // TODO (glacial): fix this.
     if (fileType === "registry:page" || fileType === "registry:file") {
       file.target = moduleSpecifier
     }
@@ -227,7 +227,7 @@ export async function recursivelyResolveFileImports(
 }
 
 async function createTempSourceFile(filename: string) {
-  const dir = await fs.mkdtemp(path.join(tmpdir(), "shadcn-"))
+  const dir = await fs.mkdtemp(path.join(tmpdir(), "glacial-"))
   return path.join(dir, filename)
 }
 

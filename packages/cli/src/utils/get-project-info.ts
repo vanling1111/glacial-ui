@@ -310,7 +310,7 @@ export async function getProjectConfig(
   }
 
   const config: z.infer<typeof rawConfigSchema> = {
-    $schema: 'https://shadcn-vue.com/schema.json',
+    $schema: 'https://glacial-ui.dev/schema.json',
     // rsc: projectInfo.isRSC,
     // tsx: projectInfo.isTsx,
     typescript: projectInfo.typescript,

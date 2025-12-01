@@ -3,7 +3,7 @@ import type { registryItemSchema, searchResultsSchema } from '@/src/schema'
 import { detectPackageManager } from 'nypm'
 import { getRegistriesConfig } from '@/src/registry/api'
 
-const SHADCN_CLI_COMMAND = 'shadcn-vue'
+const SHADCN_CLI_COMMAND = 'glacial-ui'
 
 export async function npxShadcnVue(command: string) {
   const packageRunner = await detectPackageManager(process.cwd())

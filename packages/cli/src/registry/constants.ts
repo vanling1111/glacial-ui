@@ -2,7 +2,7 @@ import type { z } from "zod"
 import type { registryConfigSchema } from "@/src/schema"
 
 export const REGISTRY_URL
-  = process.env.REGISTRY_URL ?? "https://shadcn-vue.com/r"
+  = process.env.REGISTRY_URL ?? "https://glacial-ui.dev/r"
 
 export const FALLBACK_STYLE = "new-york-v4"
 
@@ -31,7 +31,7 @@ export const BASE_COLORS = [
 
 // Built-in registries that are always available and cannot be overridden
 export const BUILTIN_REGISTRIES: z.infer<typeof registryConfigSchema> = {
-  "@shadcn": `${REGISTRY_URL}/styles/{style}/{name}.json`,
+  "@glacial": `${REGISTRY_URL}/styles/{style}/{name}.json`,
 }
 
 export const BUILTIN_MODULES = new Set([

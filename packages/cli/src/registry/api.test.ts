@@ -110,7 +110,7 @@ afterAll(() => server.close())
 describe("getRegistryItem", () => {
   it("should read and parse a valid local JSON file", async () => {
     // Create a temporary file
-    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "shadcn-test-"))
+    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "glacial-test-"))
     const tempFile = path.join(tempDir, "test-component.json")
 
     const componentData = {
@@ -152,7 +152,7 @@ describe("getRegistryItem", () => {
   })
 
   it("should handle relative paths", async () => {
-    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "shadcn-test-"))
+    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "glacial-test-"))
     const tempFile = path.join(tempDir, "relative-component.json")
 
     const componentData = {
@@ -187,7 +187,7 @@ describe("getRegistryItem", () => {
   it("should handle tilde (~) home directory paths", async () => {
     const os = await import("node:os")
     const homeDir = os.homedir()
-    const tempFile = path.join(homeDir, "shadcn-test-tilde.json")
+    const tempFile = path.join(homeDir, "glacial-test-tilde.json")
 
     const componentData = {
       name: "tilde-component",
@@ -199,7 +199,7 @@ describe("getRegistryItem", () => {
 
     try {
       // Test with tilde path
-      const tildeePath = "~/shadcn-test-tilde.json"
+      const tildeePath = "~/glacial-test-tilde.json"
       const [result] = await getRegistryItems([tildeePath])
 
       expect(result).toMatchObject({
@@ -220,7 +220,7 @@ describe("getRegistryItem", () => {
   })
 
   it("should throw error for invalid JSON", async () => {
-    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "shadcn-test-"))
+    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "glacial-test-"))
     const tempFile = path.join(tempDir, "invalid.json")
 
     await fs.writeFile(tempFile, "{ invalid json }")
@@ -236,7 +236,7 @@ describe("getRegistryItem", () => {
   })
 
   it("should throw error for JSON that doesn't match registry schema", async () => {
-    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "shadcn-test-"))
+    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "glacial-test-"))
     const tempFile = path.join(tempDir, "invalid-schema.json")
 
     const invalidData = {
@@ -302,7 +302,7 @@ describe("getRegistryItem", () => {
 
   it("should handle mixed inputs (URLs, local files, and registry names)", async () => {
     const itemUrl = "https://example.com/url-item.json"
-    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "shadcn-test-"))
+    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "glacial-test-"))
     const localFile = path.join(tempDir, "local-item.json")
 
     // Setup URL mock
@@ -360,7 +360,7 @@ describe("getRegistryItem", () => {
       }),
     )
 
-    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "shadcn-test-"))
+    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "glacial-test-"))
     const tempFile = path.join(tempDir, "component-with-url-deps.json")
 
     const componentData = {
@@ -488,7 +488,7 @@ describe("getRegistryItem", () => {
   })
 
   it("should extract Zod validation issues in RegistryParseError", async () => {
-    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "shadcn-test-"))
+    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "glacial-test-"))
     const tempFile = path.join(tempDir, "invalid-schema.json")
 
     const invalidData = {
@@ -583,7 +583,7 @@ describe("getRegistryItem", () => {
   })
 
   it("should handle multiple validation errors in RegistryParseError", async () => {
-    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "shadcn-test-"))
+    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "glacial-test-"))
     const tempFile = path.join(tempDir, "multiple-errors.json")
 
     const invalidData = {
@@ -1180,15 +1180,15 @@ describe("getRegistry", () => {
 
   it("should distinguish between URL and registry name", async () => {
     // Test that it correctly identifies and handles a URL vs registry name
-    const registryName = "@shadcn"
-    const registryUrl = "https://shadcn-vue.com/registry.json"
+    const registryName = "@glacial"
+    const registryUrl = "https://glacial-ui.dev/registry.json"
 
     // Mock for URL
     server.use(
       http.get(registryUrl, () => {
         return HttpResponse.json({
-          name: "shadcn-from-url",
-          homepage: "https://shadcn-vue.com",
+          name: "glacial-from-url",
+          homepage: "https://glacial-ui.dev",
           items: [],
         })
       }),
@@ -1198,15 +1198,15 @@ describe("getRegistry", () => {
       style: "new-york",
       tailwind: { baseColor: "neutral", cssVariables: true },
       registries: {
-        "@shadcn": {
-          url: "https://shadcn-vue.com/{name}.json",
+        "@glacial": {
+          url: "https://glacial-ui.dev/{name}.json",
         },
       },
     } as any
 
     // Fetch by URL should bypass registry config
     const urlResult = await getRegistry(registryUrl)
-    expect(urlResult.name).toBe("shadcn-from-url")
+    expect(urlResult.name).toBe("glacial-from-url")
 
     // Fetch by registry name should use config
     const nameResult = await getRegistry(registryName, { config: mockConfig })
@@ -1216,7 +1216,7 @@ describe("getRegistry", () => {
 
 describe("getRegistriesConfig", () => {
   it("should return built-in registries when no components.json exists", async () => {
-    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "shadcn-test-"))
+    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "glacial-test-"))
 
     try {
       const result = await getRegistriesConfig(tempDir)
@@ -1231,7 +1231,7 @@ describe("getRegistriesConfig", () => {
   })
 
   it("should parse valid components.json with registries", async () => {
-    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "shadcn-test-"))
+    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "glacial-test-"))
     const configFile = path.join(tempDir, "components.json")
 
     const config = {
@@ -1271,7 +1271,7 @@ describe("getRegistriesConfig", () => {
             Authorization: "Bearer token",
           },
         },
-        "@shadcn": expect.any(String),
+        "@glacial": expect.any(String),
       })
     }
     finally {
@@ -1281,7 +1281,7 @@ describe("getRegistriesConfig", () => {
   })
 
   it("should throw ConfigParseError for invalid components.json", async () => {
-    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "shadcn-test-"))
+    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "glacial-test-"))
     const configFile = path.join(tempDir, "components.json")
 
     const invalidConfig = {
@@ -1316,7 +1316,7 @@ describe("getRegistriesConfig", () => {
   })
 
   it("should handle components.json with no registries field", async () => {
-    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "shadcn-test-"))
+    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "glacial-test-"))
     const configFile = path.join(tempDir, "components.json")
 
     const config = {
@@ -1349,7 +1349,7 @@ describe("getRegistriesConfig", () => {
   })
 
   it("should handle malformed JSON file", async () => {
-    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "shadcn-test-"))
+    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "glacial-test-"))
     const configFile = path.join(tempDir, "components.json")
 
     await fs.writeFile(configFile, "{ invalid json }")
@@ -1373,7 +1373,7 @@ describe("getRegistriesConfig", () => {
   })
 
   it("should include error details in ConfigParseError", async () => {
-    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "shadcn-test-"))
+    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "glacial-test-"))
     const configFile = path.join(tempDir, "components.json")
 
     const invalidConfig = {
@@ -1408,7 +1408,7 @@ describe("getRegistriesConfig", () => {
   })
 
   it("should handle complex registry configurations", async () => {
-    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "shadcn-test-"))
+    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "glacial-test-"))
     const configFile = path.join(tempDir, "components.json")
 
     const config = {
@@ -1463,7 +1463,7 @@ describe("getRegistriesConfig", () => {
   })
 
   it("should fail when overriding built-in registries", async () => {
-    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "shadcn-test-"))
+    const tempDir = await fs.mkdtemp(path.join(tmpdir(), "glacial-test-"))
     const configFile = path.join(tempDir, "components.json")
 
     const config = {
@@ -1479,7 +1479,7 @@ describe("getRegistriesConfig", () => {
         utils: "@/lib/utils",
       },
       registries: {
-        "@shadcn": "https://shadcn-vue.com/r/styles/{style}/{name}.json",
+        "@glacial": "https://glacial-ui.dev/r/styles/{style}/{name}.json",
       },
     }
 
@@ -1493,7 +1493,7 @@ describe("getRegistriesConfig", () => {
       if (error instanceof ConfigParseError) {
         expect(error.cwd).toBe(tempDir)
         expect(error.message).toContain(
-          "\"@shadcn\" is a built-in registry and cannot be overridden",
+          "\"@glacial\" is a built-in registry and cannot be overridden",
         )
       }
     }
@@ -1501,7 +1501,7 @@ describe("getRegistriesConfig", () => {
 
   describe("caching behavior", () => {
     it("should use cache by default", async () => {
-      const tempDir = await fs.mkdtemp(path.join(tmpdir(), "shadcn-test-"))
+      const tempDir = await fs.mkdtemp(path.join(tmpdir(), "glacial-test-"))
       const configFile = path.join(tempDir, "components.json")
 
       const initialConfig = {
@@ -1552,7 +1552,7 @@ describe("getRegistriesConfig", () => {
     })
 
     it("should handle missing config with cache options", async () => {
-      const tempDir = await fs.mkdtemp(path.join(tmpdir(), "shadcn-test-"))
+      const tempDir = await fs.mkdtemp(path.join(tmpdir(), "glacial-test-"))
 
       try {
         // With cache enabled (default)
@@ -1568,7 +1568,7 @@ describe("getRegistriesConfig", () => {
     })
 
     it("should handle invalid config with cache options", async () => {
-      const tempDir = await fs.mkdtemp(path.join(tmpdir(), "shadcn-test-"))
+      const tempDir = await fs.mkdtemp(path.join(tmpdir(), "glacial-test-"))
       const configFile = path.join(tempDir, "components.json")
 
       const invalidConfig = {

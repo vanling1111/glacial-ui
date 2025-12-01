@@ -213,7 +213,7 @@
 
 //   try {
 //     // Get the template.
-//     const templatePath = path.join(os.tmpdir(), `shadcn-template-${Date.now()}`)
+//     const templatePath = path.join(os.tmpdir(), `glacial-template-${Date.now()}`)
 //     await fs.ensureDir(templatePath)
 //     const response = await fetch(MONOREPO_TEMPLATE_URL)
 //     if (!response.ok) {

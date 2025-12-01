@@ -15,7 +15,7 @@ process.on('SIGTERM', () => process.exit(0))
 
 async function main() {
   const program = new Command()
-    .name('shadcn-vue')
+    .name('glacial-ui')
     .description('add components and dependencies to your project')
     .version(
       packageJson.version || '1.0.0',

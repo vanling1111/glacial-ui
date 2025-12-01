@@ -26,9 +26,9 @@ const CLIENTS = [
     configPath: '.mcp.json',
     config: {
       mcpServers: {
-        shadcnVue: {
+        glacialUI: {
           command: 'npx',
-          args: [`shadcn-vue@${SHADCN_MCP_VERSION}`, 'mcp'],
+          args: [`glacial-ui@${SHADCN_MCP_VERSION}`, 'mcp'],
         },
       },
     },
@@ -39,9 +39,9 @@ const CLIENTS = [
     configPath: '.cursor/mcp.json',
     config: {
       mcpServers: {
-        shadcnVue: {
+        glacialUI: {
           command: 'npx',
-          args: [`shadcn-vue@${SHADCN_MCP_VERSION}`, 'mcp'],
+          args: [`glacial-ui@${SHADCN_MCP_VERSION}`, 'mcp'],
         },
       },
     },
@@ -52,9 +52,9 @@ const CLIENTS = [
     configPath: '.vscode/mcp.json',
     config: {
       servers: {
-        shadcnVue: {
+        glacialUI: {
           command: 'npx',
-          args: [`shadcn-vue@${SHADCN_MCP_VERSION}`, 'mcp'],
+          args: [`glacial-ui@${SHADCN_MCP_VERSION}`, 'mcp'],
         },
       },
     },
@@ -63,9 +63,9 @@ const CLIENTS = [
     name: 'codex',
     label: 'Codex',
     configPath: '.codex/config.toml',
-    config: `[mcp_servers.shadcn_vue]
+    config: `[mcp_servers.glacial_ui]
 command = "npx"
-args = ["shadcn-vue@${SHADCN_MCP_VERSION}", "mcp"]
+args = ["glacial-ui@${SHADCN_MCP_VERSION}", "mcp"]
 `,
   },
   {
@@ -75,17 +75,17 @@ args = ["shadcn-vue@${SHADCN_MCP_VERSION}", "mcp"]
     config: {
       $schema: 'https://opencode.ai/config.json',
       mcp: {
-        shadcnVue: {
+        glacialUI: {
           type: 'local',
           enabled: true,
-          command: ['npx', `shadcn-vue@${SHADCN_MCP_VERSION}`, 'mcp'],
+          command: ['npx', `glacial-ui@${SHADCN_MCP_VERSION}`, 'mcp'],
         },
       },
     },
   },
 ] as const
 
-const DEPENDENCIES = [`shadcn-vue@${SHADCN_MCP_VERSION}`]
+const DEPENDENCIES = [`glacial-ui@${SHADCN_MCP_VERSION}`]
 
 export const mcp = new Command()
   .name('mcp')
@@ -178,7 +178,7 @@ mcp
         }
 
         logger.break()
-        logger.log('To configure the shadcn-vue MCP server in Codex:')
+        logger.log('To configure the glacial-ui MCP server in Codex:')
         logger.break()
         logger.log(
           `1. Open or create the file ${highlighter.info(
@@ -187,9 +187,9 @@ mcp
         )
         logger.log('2. Add the following configuration:')
         logger.log()
-        logger.info(`[mcp_servers.shadcn_vue]
+        logger.info(`[mcp_servers.glacial_ui]
 command = "npx"
-args = ["shadcn-vue@${SHADCN_MCP_VERSION}", "mcp"]`)
+args = ["glacial-ui@${SHADCN_MCP_VERSION}", "mcp"]`)
         logger.break()
         logger.info('3. Restart Codex to load the MCP server')
         logger.break()

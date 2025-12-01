@@ -136,7 +136,7 @@ export const init = new Command()
   // )
   .option('--css-variables', 'use css variables for theming.', true)
   .option('--no-css-variables', 'do not use css variables for theming.')
-  .option('--no-base-style', 'do not install the base shadcn style.')
+  .option('--no-base-style', 'do not install the base glacial style.')
   .action(async (components, opts) => {
     try {
       // Apply defaults when --defaults flag is set.
@@ -282,7 +282,7 @@ export async function runInit(
 
   // Prepare the list of components to be added.
   const components = [
-    // "index" is the default shadcn style.
+    // "index" is the default glacial style.
     // Why index? Because when style is true, we read style from components.json and fetch that.
     // i.e new-york from components.json then fetch /styles/new-york/index.
     // TODO: Fix this so that we can extend any style i.e --style=new-york.
@@ -444,7 +444,7 @@ async function promptForConfig(defaultConfig: Config | null = null) {
   ])
 
   return rawConfigSchema.parse({
-    $schema: 'https://shadcn-vue.com/schema.json',
+    $schema: 'https://glacial-ui.dev/schema.json',
     style: options.style,
     tailwind: {
       config: options.tailwindConfig,

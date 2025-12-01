@@ -19,7 +19,7 @@ import {
 
 export const server = new Server(
   {
-    name: 'shadcnVue',
+    name: 'glacialUI',
     version: '1.0.0',
   },
   {
@@ -48,7 +48,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
             registries: z
               .array(z.string())
               .describe(
-                'Array of registry names to search (e.g., [\'@shadcn\', \'@acme\'])',
+                'Array of registry names to search (e.g., [\'@glacial\', \'@acme\'])',
               ),
             limit: z
               .number()
@@ -70,7 +70,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
             registries: z
               .array(z.string())
               .describe(
-                'Array of registry names to search (e.g., [\'@shadcn\', \'@acme\'])',
+                'Array of registry names to search (e.g., [\'@glacial\', \'@acme\'])',
               ),
             query: z
               .string()
@@ -97,7 +97,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
             items: z
               .array(z.string())
               .describe(
-                'Array of item names with registry prefix (e.g., [\'@shadcn/button\', \'@shadcn/card\'])',
+                'Array of item names with registry prefix (e.g., [\'@glacial/button\', \'@glacial/card\'])',
               ),
           }),
         ),
@@ -111,7 +111,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
             registries: z
               .array(z.string())
               .describe(
-                'Array of registry names to search (e.g., [\'@shadcn\', \'@acme\'])',
+                'Array of registry names to search (e.g., [\'@glacial\', \'@acme\'])',
               ),
             query: z
               .string()
@@ -124,13 +124,13 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
       {
         name: 'get_add_command_for_items',
         description:
-          'Get the shadcn-vue CLI add command for specific items in a registry. This is useful for adding one or more components to your project.',
+          'Get the glacial-ui CLI add command for specific items in a registry. This is useful for adding one or more components to your project.',
         inputSchema: zodToJsonSchema(
           z.object({
             items: z
               .array(z.string())
               .describe(
-                'Array of items to get the add command for prefixed with the registry name (e.g., [\'@shadcn/button\', \'@shadcn/card\'])',
+                'Array of items to get the add command for prefixed with the registry name (e.g., [\'@glacial/button\', \'@glacial/card\'])',
               ),
           }),
         ),
@@ -184,9 +184,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
                 \`${await npxShadcnVue('view @name-of-registry')}\`
 
                 For example: \`${await npxShadcnVue(
-                  'view @shadcn',
+                  'view @glacial',
                 )}\` or \`${await npxShadcnVue(
-                  'view @shadcn @acme',
+                  'view @glacial @acme',
                 )}\` to view multiple registries.
                 `,
             },
@@ -298,7 +298,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
                 type: 'text',
                 text: dedent`No items found for: ${args.items.join(', ')}
 
-                Make sure the item names are correct and include the registry prefix (e.g., @shadcn/button).`,
+                Make sure the item names are correct and include the registry prefix (e.g., @glacial/button).`,
               },
             ],
           }

@@ -53,7 +53,7 @@ export async function preFlightAdd(options: z.infer<typeof addOptionsSchema>) {
     )
     logger.error(
       `Learn more at ${highlighter.info(
-        'https://shadcn-vue.com/docs/components-json',
+        'https://glacial-ui.dev/docs/components-json',
       )}.`,
     )
     logger.break()
