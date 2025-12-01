@@ -1,5 +1,4 @@
 import type { VariantProps } from "class-variance-authority"
-import type { HTMLAttributes } from "vue"
 import { cva } from "class-variance-authority"
 
 export { default as Input } from "./Input.vue"
@@ -115,7 +114,7 @@ export interface InputProps {
    * 输入框尺寸
    * @default "default"
    */
-  size?: InputVariants["size"]
+  size?: "xs" | "sm" | "default" | "lg" | "xl"
   
   /**
    * 输入框变体
@@ -315,17 +314,17 @@ export interface InputProps {
   /** 
    * 自动完成
    */
-  autocomplete?: HTMLInputElement["autocomplete"]
+  autocomplete?: "on" | "off" | "name" | "email" | "username" | "new-password" | "current-password" | "tel" | "url" | string
   
   /** 
    * 自定义类名
    */
-  class?: HTMLAttributes["class"]
+  class?: string
   
   /**
    * 输入框内部类名
    */
-  inputClass?: HTMLAttributes["class"]
+  inputClass?: string
 }
 
 /**

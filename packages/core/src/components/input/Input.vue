@@ -41,7 +41,7 @@ const props = withDefaults(defineProps<InputProps>(), {
   spellCheck: false,
   showPassword: false,
   autofocus: false,
-} as const)
+})
 
 const emit = defineEmits<{
   /** 值更新 */
