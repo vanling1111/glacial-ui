@@ -1,10 +1,9 @@
 import type { z } from "zod"
 import type { registryConfigSchema } from "@/src/schema"
 
-// GitHub Raw URL - 推送到 GitHub 后生效
-// 格式: https://raw.githubusercontent.com/{用户名}/glacial-ui/main/registry
+// jsDelivr CDN - 从 GitHub 仓库获取组件（无缓存延迟）
 export const REGISTRY_URL
-  = process.env.REGISTRY_URL ?? "https://raw.githubusercontent.com/vanling1111/glacial-ui/main/registry"
+  = process.env.REGISTRY_URL ?? "https://cdn.jsdelivr.net/gh/vanling1111/glacial-ui@main/registry"
 
 export const FALLBACK_STYLE = "new-york-v4"
 
