@@ -14,7 +14,7 @@ import {
   formatRegistryItems,
   formatSearchResultsWithPagination,
   getMcpConfig,
-  npxShadcnVue,
+  npxGlacialUI,
 } from './utils'
 
 export const server = new Server(
@@ -181,11 +181,11 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
                   .join('\n')}
 
                 You can view the items in a registry by running:
-                \`${await npxShadcnVue('view @name-of-registry')}\`
+                \`${await npxGlacialUI('view @name-of-registry')}\`
 
-                For example: \`${await npxShadcnVue(
+                For example: \`${await npxGlacialUI(
                   'view @glacial',
-                )}\` or \`${await npxShadcnVue(
+                )}\` or \`${await npxGlacialUI(
                   'view @glacial @acme',
                 )}\` to view multiple registries.
                 `,
@@ -380,7 +380,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           content: [
             {
               type: 'text',
-              text: await npxShadcnVue(`add ${args.items.join(' ')}`),
+              text: await npxGlacialUI(`add ${args.items.join(' ')}`),
             },
           ],
         }

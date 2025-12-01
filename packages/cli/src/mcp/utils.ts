@@ -3,12 +3,12 @@ import type { registryItemSchema, searchResultsSchema } from '@/src/schema'
 import { detectPackageManager } from 'nypm'
 import { getRegistriesConfig } from '@/src/registry/api'
 
-const SHADCN_CLI_COMMAND = 'glacial-ui'
+const GLACIAL_CLI_COMMAND = 'glacial-ui'
 
-export async function npxShadcnVue(command: string) {
+export async function npxGlacialUI(command: string) {
   const packageRunner = await detectPackageManager(process.cwd())
 
-  return `${packageRunner?.name} ${SHADCN_CLI_COMMAND} ${command}`
+  return `${packageRunner?.name} ${GLACIAL_CLI_COMMAND} ${command}`
 }
 
 export async function getMcpConfig(cwd = process.cwd()) {
@@ -44,7 +44,7 @@ export function formatSearchResultsWithPagination(
     }
 
     parts.push(
-      `\n  Add command: \`${npxShadcnVue(`add ${item.addCommandArgument}`)}\``,
+      `\n  Add command: \`${npxGlacialUI(`add ${item.addCommandArgument}`)}\``,
     )
 
     return parts.join(' ')

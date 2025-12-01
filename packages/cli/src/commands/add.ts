@@ -6,7 +6,7 @@ import prompts from 'prompts'
 import { z } from 'zod'
 import { runInit } from '@/src/commands/init'
 import { preFlightAdd } from '@/src/preflights/preflight-add'
-import { getRegistryItems, getShadcnRegistryIndex } from '@/src/registry/api'
+import { getRegistryItems, getRegistryIndex } from '@/src/registry/api'
 import { DEPRECATED_COMPONENTS } from '@/src/registry/constants'
 import { clearRegistryContext } from '@/src/registry/context'
 import { isUniversalRegistryItem } from '@/src/registry/utils'
@@ -260,7 +260,7 @@ export const add = new Command()
 async function promptForRegistryComponents(
   options: z.infer<typeof addOptionsSchema>,
 ) {
-  const registryIndex = await getShadcnRegistryIndex()
+  const registryIndex = await getRegistryIndex()
   if (!registryIndex) {
     logger.break()
     handleError(new Error('Failed to fetch registry index.'))

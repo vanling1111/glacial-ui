@@ -5,7 +5,7 @@ import path from "pathe"
 import { z } from "zod"
 import {
   getRegistryBaseColor,
-  getShadcnRegistryIndex,
+  getRegistryIndex,
 } from "@/src/registry/api"
 import {
   buildUrlAndHeadersForRegistryItem,
@@ -222,7 +222,7 @@ export async function resolveRegistryTree(
 
       // For non-namespaced items, we need the index and style resolution
       if (nonNamespacedItems.length > 0) {
-        const index = await getShadcnRegistryIndex()
+        const index = await getRegistryIndex()
         if (!index && payload.length === 0) {
           return null
         }

@@ -17,7 +17,7 @@ import { logger } from '@/src/utils/logger'
 import { spinner } from '@/src/utils/spinner'
 import { updateDependencies } from '@/src/utils/updaters/update-dependencies'
 
-const SHADCN_MCP_VERSION = 'latest'
+const GLACIAL_MCP_VERSION = 'latest'
 
 const CLIENTS = [
   {
@@ -28,7 +28,7 @@ const CLIENTS = [
       mcpServers: {
         glacialUI: {
           command: 'npx',
-          args: [`glacial-ui@${SHADCN_MCP_VERSION}`, 'mcp'],
+          args: [`glacial-ui@${GLACIAL_MCP_VERSION}`, 'mcp'],
         },
       },
     },
@@ -41,7 +41,7 @@ const CLIENTS = [
       mcpServers: {
         glacialUI: {
           command: 'npx',
-          args: [`glacial-ui@${SHADCN_MCP_VERSION}`, 'mcp'],
+          args: [`glacial-ui@${GLACIAL_MCP_VERSION}`, 'mcp'],
         },
       },
     },
@@ -54,7 +54,7 @@ const CLIENTS = [
       servers: {
         glacialUI: {
           command: 'npx',
-          args: [`glacial-ui@${SHADCN_MCP_VERSION}`, 'mcp'],
+          args: [`glacial-ui@${GLACIAL_MCP_VERSION}`, 'mcp'],
         },
       },
     },
@@ -65,7 +65,7 @@ const CLIENTS = [
     configPath: '.codex/config.toml',
     config: `[mcp_servers.glacial_ui]
 command = "npx"
-args = ["glacial-ui@${SHADCN_MCP_VERSION}", "mcp"]
+args = ["glacial-ui@${GLACIAL_MCP_VERSION}", "mcp"]
 `,
   },
   {
@@ -78,14 +78,14 @@ args = ["glacial-ui@${SHADCN_MCP_VERSION}", "mcp"]
         glacialUI: {
           type: 'local',
           enabled: true,
-          command: ['npx', `glacial-ui@${SHADCN_MCP_VERSION}`, 'mcp'],
+          command: ['npx', `glacial-ui@${GLACIAL_MCP_VERSION}`, 'mcp'],
         },
       },
     },
   },
 ] as const
 
-const DEPENDENCIES = [`glacial-ui@${SHADCN_MCP_VERSION}`]
+const DEPENDENCIES = [`glacial-ui@${GLACIAL_MCP_VERSION}`]
 
 export const mcp = new Command()
   .name('mcp')
@@ -189,7 +189,7 @@ mcp
         logger.log()
         logger.info(`[mcp_servers.glacial_ui]
 command = "npx"
-args = ["glacial-ui@${SHADCN_MCP_VERSION}", "mcp"]`)
+args = ["glacial-ui@${GLACIAL_MCP_VERSION}", "mcp"]`)
         logger.break()
         logger.info('3. Restart Codex to load the MCP server')
         logger.break()

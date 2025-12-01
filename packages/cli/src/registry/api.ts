@@ -152,7 +152,7 @@ export async function getRegistriesConfig(
   }
 }
 
-export async function getShadcnRegistryIndex() {
+export async function getRegistryIndex() {
   try {
     const [result] = await fetchRegistry(["index.json"])
 
