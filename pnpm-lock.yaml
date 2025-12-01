@@ -159,6 +159,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      embla-carousel:
+        specifier: ^8.6.0
+        version: 8.6.0
       embla-carousel-autoplay:
         specifier: ^8.5.2
         version: 8.6.0(embla-carousel@8.6.0)
@@ -169,7 +172,7 @@ importers:
         specifier: ^0.468.0
         version: 0.468.0(vue@3.5.25(typescript@5.9.3))
       reka-ui:
-        specifier: ^2.1.0
+        specifier: ^2.6.0
         version: 2.6.0(typescript@5.9.3)(vue@3.5.25(typescript@5.9.3))
       tailwind-merge:
         specifier: ^2.6.0
@@ -184,8 +187,8 @@ importers:
         specifier: ^4.15.0
         version: 4.15.1(vue@3.5.25(typescript@5.9.3))
       vue-input-otp:
-        specifier: ^0.1.1
-        version: 0.1.1(vue@3.5.25(typescript@5.9.3))
+        specifier: ^0.3.1
+        version: 0.3.1(typescript@5.9.3)(vue@3.5.25(typescript@5.9.3))
       vue-sonner:
         specifier: ^1.3.0
         version: 1.3.2
@@ -3351,8 +3354,8 @@ packages:
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0
 
-  vue-input-otp@0.1.1:
-    resolution: {integrity: sha512-URO1Qitwg1tpA2/PxGBgXqJHApNSlv0txxDMTl8QE2nyDDwugD/E7jrjTTb7tMuNewQldVbCTWu/JXxFUJCDXQ==}
+  vue-input-otp@0.3.1:
+    resolution: {integrity: sha512-WlfoqbIa2rEa1qrHnGMo0zfzSfUTiFJq6leZe0Cdq2FJAcZdiIlxPNf0VXYa4okI+MeCEy8fqNYpPUMXEVu7Fw==}
     peerDependencies:
       vue: ^3.2.0
 
@@ -6689,9 +6692,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  vue-input-otp@0.1.1(vue@3.5.25(typescript@5.9.3)):
+  vue-input-otp@0.3.1(typescript@5.9.3)(vue@3.5.25(typescript@5.9.3)):
     dependencies:
+      '@vueuse/core': 12.8.2(typescript@5.9.3)
+      reka-ui: 2.6.0(typescript@5.9.3)(vue@3.5.25(typescript@5.9.3))
       vue: 3.5.25(typescript@5.9.3)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - typescript
 
   vue-metamorph@3.3.3(eslint@9.39.1(jiti@2.6.1)):
     dependencies:

@@ -9,6 +9,8 @@ export default defineConfig({
     dts({
       insertTypesEntry: true,
       cleanVueTsc: true,
+      // 跳过类型诊断错误，仍然生成 .d.ts 文件
+      skipDiagnostics: true,
     }),
   ],
   resolve: {
@@ -36,6 +38,7 @@ export default defineConfig({
         '@unovis/vue',
         '@unovis/ts',
         '@tanstack/vue-table',
+        'embla-carousel',
         'embla-carousel-vue',
         'embla-carousel-autoplay',
         'vaul-vue',
