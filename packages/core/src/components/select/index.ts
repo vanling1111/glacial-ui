@@ -5,18 +5,7 @@ import { cva } from "class-variance-authority"
 // 组件导出
 // ============================================================================
 
-/**
- * 增强版 Select 组件（推荐使用）
- * 
- * 功能完整，开箱即用，类似 Ant Design / Arco Design 的使用体验
- * 支持：options 数据驱动、搜索、多选、远程加载、虚拟滚动等
- * 
- * @example
- * ```vue
- * <GSelect v-model="value" :options="options" searchable multiple />
- * ```
- */
-export { default as GSelect } from "./GSelect.vue"
+// 注意：本库遵循 shadcn 原子化结构，不再提供 G* 封装组件。
 
 /**
  * 原子化 Select 组件（shadcn 风格）

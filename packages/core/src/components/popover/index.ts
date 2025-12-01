@@ -5,19 +5,7 @@ import { cva } from "class-variance-authority"
 // 组件导出
 // ============================================================================
 
-/**
- * GPopover - 增强版封装组件（开箱即用）
- * 
- * 基于原子化组件封装，适合简单场景快速使用
- * 
- * @example
- * ```vue
- * <GPopover title="标题" content="内容" theme="dark">
- *   <Button>点击显示</Button>
- * </GPopover>
- * ```
- */
-export { default as GPopover } from "./GPopover.vue"
+// 注意：本库遵循 shadcn 原子化结构，不再提供 G* 封装组件。
 
 /**
  * Popover - 原子化增强版根组件

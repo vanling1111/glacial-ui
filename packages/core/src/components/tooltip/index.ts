@@ -5,19 +5,6 @@ import { cva } from "class-variance-authority"
 // 组件导出
 // ============================================================================
 
-/**
- * GTooltip - 增强版封装组件（开箱即用）
- * 
- * 基于原子化组件封装，适合简单场景快速使用
- * 
- * @example
- * ```vue
- * <GTooltip content="提示文本" theme="success">
- *   <Button>悬停显示</Button>
- * </GTooltip>
- * ```
- */
-export { default as GTooltip } from "./GTooltip.vue"
 
 /**
  * Tooltip - 原子化增强版根组件
