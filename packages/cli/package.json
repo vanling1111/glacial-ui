@@ -1,7 +1,7 @@
 {
-  "name": "@glacial-ui/cli",
-  "version": "0.0.1",
-  "description": "CLI for adding Glacial UI components to your project",
+  "name": "glacial-ui",
+  "version": "0.1.0",
+  "description": "CLI for adding Glacial UI components to your Vue project",
   "type": "module",
   "license": "MIT",
   "author": "vanling1111",

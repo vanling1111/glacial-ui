@@ -1,5 +1,5 @@
 {
-  "name": "glacial-ui",
+  "name": "@glacial-ui/core",
   "version": "0.0.1",
   "description": "Vue component library with Vercel-inspired design",
   "author": "vanling1111",
