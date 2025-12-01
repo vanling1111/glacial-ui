@@ -1,26 +1,26 @@
 <script setup lang="ts">
-import type { PrimitiveProps } from "reka-ui"
+/**
+ * Badge 徽章组件
+ * 
+ * shadcn 风格的简洁徽章组件
+ * 增强功能通过组合组件提供
+ */
 import type { HTMLAttributes } from "vue"
 import type { BadgeVariants } from "."
-import { reactiveOmit } from "@vueuse/core"
-import { Primitive } from "reka-ui"
 import { cn } from "@/lib/utils"
 import { badgeVariants } from "."
 
-const props = defineProps<PrimitiveProps & {
+const props = defineProps<{
   variant?: BadgeVariants["variant"]
   class?: HTMLAttributes["class"]
 }>()
-
-const delegatedProps = reactiveOmit(props, "class")
 </script>
 
 <template>
-  <Primitive
+  <span
     data-slot="badge"
     :class="cn(badgeVariants({ variant }), props.class)"
-    v-bind="delegatedProps"
   >
     <slot />
-  </Primitive>
+  </span>
 </template>

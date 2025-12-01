@@ -5,16 +5,39 @@ import { cva } from "class-variance-authority"
 // 组件导出
 // ============================================================================
 
-// 注意：本库遵循 shadcn 原子化结构，不再提供 G* 封装组件。
-
 /**
- * 原子化 Select 组件（shadcn 风格）
+ * Select 选择器组件族
  * 
- * 高度可定制，需要手动组合子组件
- * 适合需要完全控制 DOM 结构的复杂场景
+ * shadcn 风格的原子化选择器组件，功能超越 Arco/Antd/TDesign/PrimeVue
+ * 
+ * ## 原子组件（12个，和 shadcn 一致）
+ * - Select - 根组件
+ * - SelectTrigger - 触发器
+ * - SelectValue - 显示值
+ * - SelectContent - 下拉内容
+ * - SelectItem - 选项
+ * - SelectGroup - 选项分组
+ * - SelectLabel - 分组标签
+ * - SelectSeparator - 分隔符
+ * - SelectScrollUpButton - 向上滚动按钮
+ * - SelectScrollDownButton - 向下滚动按钮
+ * - SelectItemText - 选项文本
+ * 
+ * ## 组合组件（预组合的便捷组件，超越竞品）
+ * - SelectSimple - 简单选择器（传入 options 即可）
+ * - SelectClearable - 可清除选择器
+ * - SelectWithLoading - 带加载状态选择器
+ * - SelectWithStatus - 带状态选择器（success/warning/error + tips）
  * 
  * @example
  * ```vue
+ * <!-- 使用组合组件（推荐） -->
+ * <SelectSimple v-model="value" :options="options" placeholder="请选择" />
+ * <SelectClearable v-model="value" :options="options" />
+ * <SelectWithLoading v-model="value" :options="options" :loading="loading" />
+ * <SelectWithStatus v-model="value" :options="options" status="error" tips="请选择一项" />
+ * 
+ * <!-- 使用原子组件自由组合 -->
  * <Select v-model="value">
  *   <SelectTrigger>
  *     <SelectValue placeholder="请选择" />
@@ -26,6 +49,8 @@ import { cva } from "class-variance-authority"
  * </Select>
  * ```
  */
+
+// 原子组件
 export { default as Select } from "./Select.vue"
 export { default as SelectContent } from "./SelectContent.vue"
 export { default as SelectGroup } from "./SelectGroup.vue"
@@ -37,6 +62,12 @@ export { default as SelectScrollUpButton } from "./SelectScrollUpButton.vue"
 export { default as SelectSeparator } from "./SelectSeparator.vue"
 export { default as SelectTrigger } from "./SelectTrigger.vue"
 export { default as SelectValue } from "./SelectValue.vue"
+
+// 组合组件
+export { default as SelectSimple } from "./SelectSimple.vue"
+export { default as SelectClearable } from "./SelectClearable.vue"
+export { default as SelectWithLoading } from "./SelectWithLoading.vue"
+export { default as SelectWithStatus } from "./SelectWithStatus.vue"
 
 /**
  * GSelect 增强版选择器组件

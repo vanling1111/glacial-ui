@@ -16,12 +16,14 @@
  * | 箭头控制 | ✅ |
  * | 点击外部关闭控制 | ✅ |
  * | Escape 键关闭控制 | ✅ |
+ * | 语义化 placement + container + zIndex | ✅ |
+ * | contentClass/contentStyle/arrowStyle | ✅ |
  * 
  * @example
  * ```vue
  * <Popover>
  *   <PopoverTrigger>打开</PopoverTrigger>
- *   <PopoverContent theme="dark" size="lg" show-arrow>
+ *   <PopoverContent theme="dark" size="lg" placement="bottom-start" :z-index="2000" container="body" show-arrow>
  *     <div class="font-semibold mb-2">标题</div>
  *     <div>内容</div>
  *   </PopoverContent>
@@ -29,7 +31,7 @@
  * ```
  */
 import type { PopoverContentEmits, PopoverContentProps } from "reka-ui"
-import type { HTMLAttributes } from "vue"
+import type { CSSProperties, HTMLAttributes } from "vue"
 import { computed } from "vue"
 import { reactiveOmit } from "@vueuse/core"
 import {
@@ -40,6 +42,8 @@ import {
 } from "reka-ui"
 import { cn } from "@/lib/utils"
 import { popoverVariants } from "./index"
+import { mapPlacement } from "./placement"
+import { resolveContainer } from "./portal"
 
 defineOptions({
   inheritAttrs: false,
@@ -59,6 +63,14 @@ interface ExtendedProps extends PopoverContentProps {
    */
   size?: "sm" | "default" | "lg" | "auto"
   /**
+   * 语义化位置
+   */
+  placement?:
+    | "top" | "top-start" | "top-end"
+    | "bottom" | "bottom-start" | "bottom-end"
+    | "left" | "left-start" | "left-end"
+    | "right" | "right-start" | "right-end"
+  /**
    * 最大宽度
    */
   maxWidth?: string | number
@@ -66,6 +78,10 @@ interface ExtendedProps extends PopoverContentProps {
    * 最大高度
    */
   maxHeight?: string | number
+  /**
+   * zIndex（覆盖默认层级）
+   */
+  zIndex?: number | string
   /**
    * 是否显示箭头
    * @default false
@@ -75,6 +91,22 @@ interface ExtendedProps extends PopoverContentProps {
    * 箭头自定义类名
    */
   arrowClass?: string
+  /**
+   * 箭头样式
+   */
+  arrowStyle?: CSSProperties
+  /**
+   * 内容容器类名
+   */
+  contentClass?: HTMLAttributes["class"]
+  /**
+   * 内容容器样式
+   */
+  contentStyle?: CSSProperties
+  /**
+   * Teleport 容器（等价于 getPopupContainer/appendTo）
+   */
+  container?: string | HTMLElement
   /**
    * 点击外部是否关闭
    * @default true
@@ -99,22 +131,47 @@ const props = withDefaults(defineProps<ExtendedProps>(), {
 
 const emits = defineEmits<PopoverContentEmits>()
 
-const delegatedProps = reactiveOmit(props, "class", "theme", "size", "maxWidth", "maxHeight", "showArrow", "arrowClass", "closeOnClickOutside", "closeOnEscape")
+const delegatedProps = reactiveOmit(
+  props,
+  "class",
+  "theme",
+  "size",
+  "placement",
+  "maxWidth",
+  "maxHeight",
+  "zIndex",
+  "showArrow",
+  "arrowClass",
+  "arrowStyle",
+  "contentClass",
+  "contentStyle",
+  "container",
+  "closeOnClickOutside",
+  "closeOnEscape",
+)
 
 const forwarded = useForwardPropsEmits(delegatedProps, emits)
 
+// 计算映射后的 side/align
+const mapped = computed(() => mapPlacement(props.placement))
+
 // 计算自定义样式
-const customStyle = computed(() => {
-  const style: Record<string, string> = {}
-  if (props.maxWidth) {
-    style.maxWidth = typeof props.maxWidth === "number" ? `${props.maxWidth}px` : props.maxWidth
-  }
+const mergedStyle = computed<CSSProperties>(() => {
+  const style: CSSProperties = {}
+  if (props.maxWidth) style.maxWidth = typeof props.maxWidth === "number" ? `${props.maxWidth}px` : props.maxWidth
   if (props.maxHeight) {
     style.maxHeight = typeof props.maxHeight === "number" ? `${props.maxHeight}px` : props.maxHeight
-    style.overflow = "auto"
+    ;(style as any).overflow = "auto"
   }
-  return style
+  if (props.zIndex !== undefined) style.zIndex = props.zIndex as any
+  return { ...style, ...(props.contentStyle || {}) }
 })
+
+// 箭头样式
+const mergedArrowStyle = computed(() => ({ ...(props.arrowStyle || {}) }))
+
+// Teleport 容器
+const resolvedContainer = computed(() => resolveContainer(props.container))
 
 // 处理交互事件
 function handleInteractOutside(event: Event) {
@@ -131,16 +188,50 @@ function handleEscapeKeyDown(event: KeyboardEvent) {
 </script>
 
 <template>
-  <PopoverPortal>
+  <teleport v-if="resolvedContainer" :to="resolvedContainer">
     <PopoverContent
       data-slot="popover-content"
       v-bind="{ ...$attrs, ...forwarded }"
+      :side="mapped.side ?? forwarded.side"
+      :align="mapped.align ?? forwarded.align"
       :class="cn(
         popoverVariants({ theme, size }),
         'origin-(--reka-popover-content-transform-origin) outline-hidden',
-        props.class
+        props.class,
+        props.contentClass,
       )"
-      :style="customStyle"
+      :style="mergedStyle"
+      @interact-outside="handleInteractOutside"
+      @escape-key-down="handleEscapeKeyDown"
+    >
+      <slot />
+
+      <PopoverArrow
+        v-if="showArrow"
+        :class="cn(
+          'fill-popover',
+          theme === 'light' && 'fill-white',
+          theme === 'dark' && 'fill-zinc-900',
+          arrowClass
+        )"
+        :style="mergedArrowStyle"
+      />
+    </PopoverContent>
+  </teleport>
+
+  <PopoverPortal v-else>
+    <PopoverContent
+      data-slot="popover-content"
+      v-bind="{ ...$attrs, ...forwarded }"
+      :side="mapped.side ?? forwarded.side"
+      :align="mapped.align ?? forwarded.align"
+      :class="cn(
+        popoverVariants({ theme, size }),
+        'origin-(--reka-popover-content-transform-origin) outline-hidden',
+        props.class,
+        props.contentClass,
+      )"
+      :style="mergedStyle"
       @interact-outside="handleInteractOutside"
       @escape-key-down="handleEscapeKeyDown"
     >
@@ -155,6 +246,7 @@ function handleEscapeKeyDown(event: KeyboardEvent) {
           theme === 'dark' && 'fill-zinc-900',
           arrowClass
         )"
+        :style="mergedArrowStyle"
       />
     </PopoverContent>
   </PopoverPortal>

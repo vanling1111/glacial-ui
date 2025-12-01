@@ -1,11 +1,14 @@
 <script setup lang="ts">
+/**
+ * Progress 进度条组件
+ * 
+ * shadcn 风格的简洁进度条组件
+ * 增强功能通过组合组件提供
+ */
 import type { ProgressRootProps } from "reka-ui"
 import type { HTMLAttributes } from "vue"
 import { reactiveOmit } from "@vueuse/core"
-import {
-  ProgressIndicator,
-  ProgressRoot,
-} from "reka-ui"
+import { ProgressIndicator, ProgressRoot } from "reka-ui"
 import { cn } from "@/lib/utils"
 
 const props = withDefaults(
@@ -22,16 +25,14 @@ const delegatedProps = reactiveOmit(props, "class")
   <ProgressRoot
     data-slot="progress"
     v-bind="delegatedProps"
-    :class="
-      cn(
-        'bg-primary/20 relative h-2 w-full overflow-hidden rounded-full',
-        props.class,
-      )
-    "
+    :class="cn(
+      'bg-primary/20 relative h-2 w-full overflow-hidden rounded-full',
+      props.class,
+    )"
   >
     <ProgressIndicator
       data-slot="progress-indicator"
-      class="bg-primary h-full w-full flex-1 transition-all"
+      class="bg-primary h-full w-full flex-1 transition-all duration-300"
       :style="`transform: translateX(-${100 - (props.modelValue ?? 0)}%);`"
     />
   </ProgressRoot>

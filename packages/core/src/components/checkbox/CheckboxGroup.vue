@@ -37,7 +37,8 @@
  */
 import { computed, ref, watch, provide, reactive } from "vue"
 import { cn } from "@/lib/utils"
-import Checkbox from "./Checkbox.vue"
+import CheckboxWithLabel from "./CheckboxWithLabel.vue"
+import CheckboxIndeterminate from "./CheckboxIndeterminate.vue"
 import { checkboxGroupVariants, type CheckboxGroupProps, type CheckboxGroupEmits, type CheckboxOption } from "./index"
 
 const props = withDefaults(defineProps<CheckboxGroupProps>(), {
@@ -203,15 +204,13 @@ defineExpose({
     :aria-label="name"
   >
     <!-- 全选选项 -->
-    <Checkbox
+    <CheckboxIndeterminate
       v-if="showCheckAll"
       :model-value="checkAllState === true"
       :indeterminate="checkAllState === 'indeterminate'"
       :label="checkAllLabel"
-      :size="size"
-      :variant="variant"
       :disabled="disabled"
-      @change="handleCheckAll"
+      @update:model-value="handleCheckAll"
     />
 
     <!-- 分隔线（全选和选项之间） -->
@@ -219,22 +218,20 @@ defineExpose({
 
     <!-- 通过 options 渲染 -->
     <template v-if="options?.length">
-      <Checkbox
+      <CheckboxWithLabel
         v-for="option in options"
         :key="String(option.value)"
-        :value="option.value"
+        :model-value="isChecked(option.value)"
         :label="option.label"
         :description="option.description"
-        :disabled="option.disabled"
-        :indeterminate="option.indeterminate"
-        :size="size"
-        :variant="variant"
+        :disabled="option.disabled || disabled || (isMaxReached && !isChecked(option.value))"
+        @update:model-value="toggleValue(option.value)"
       >
         <!-- 自定义选项内容 -->
         <template v-if="$slots.option" #default>
           <slot name="option" :option="option" :checked="isChecked(option.value)" />
         </template>
-      </Checkbox>
+      </CheckboxWithLabel>
     </template>
 
     <!-- 通过插槽渲染 -->
