@@ -6,35 +6,52 @@ import { cva } from "class-variance-authority"
 // ============================================================================
 
 /**
- * 增强版 Popover 组件（推荐使用）
+ * GPopover - 增强版封装组件（开箱即用）
  * 
- * 功能完整，开箱即用
+ * 基于原子化组件封装，适合简单场景快速使用
  * 
  * @example
  * ```vue
- * <GPopover title="标题" content="内容">
- *   <Button>悬停显示</Button>
+ * <GPopover title="标题" content="内容" theme="dark">
+ *   <Button>点击显示</Button>
  * </GPopover>
  * ```
  */
 export { default as GPopover } from "./GPopover.vue"
 
 /**
- * 原子化 Popover 组件（shadcn 风格）
+ * Popover - 原子化增强版根组件
  * 
- * 高度可定制，需要手动组合子组件
+ * 所有增强功能都在原子化组件上实现，支持 disabled、modal 等
  * 
  * @example
  * ```vue
- * <Popover>
+ * <Popover v-model:open="isOpen" disabled>
  *   <PopoverTrigger>打开</PopoverTrigger>
- *   <PopoverContent>内容</PopoverContent>
+ *   <PopoverContent theme="dark" size="lg" show-arrow>
+ *     <div class="font-semibold mb-2">标题</div>
+ *     <div>内容</div>
+ *   </PopoverContent>
  * </Popover>
  * ```
  */
 export { default as Popover } from "./Popover.vue"
+
+/**
+ * PopoverAnchor - 锚点组件
+ */
 export { default as PopoverAnchor } from "./PopoverAnchor.vue"
+
+/**
+ * PopoverContent - 原子化增强版内容组件
+ * 
+ * 支持 theme、size、maxWidth、maxHeight、showArrow、closeOnClickOutside、closeOnEscape 等
+ */
 export { default as PopoverContent } from "./PopoverContent.vue"
+
+/**
+ * PopoverTrigger - 触发器组件
+ */
 export { default as PopoverTrigger } from "./PopoverTrigger.vue"
 
 // ============================================================================

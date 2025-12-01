@@ -6,13 +6,13 @@ import { cva } from "class-variance-authority"
 // ============================================================================
 
 /**
- * 增强版 Tooltip 组件（推荐使用）
+ * GTooltip - 增强版封装组件（开箱即用）
  * 
- * 功能完整，开箱即用
+ * 基于原子化组件封装，适合简单场景快速使用
  * 
  * @example
  * ```vue
- * <GTooltip content="提示文本">
+ * <GTooltip content="提示文本" theme="success">
  *   <Button>悬停显示</Button>
  * </GTooltip>
  * ```
@@ -20,23 +20,41 @@ import { cva } from "class-variance-authority"
 export { default as GTooltip } from "./GTooltip.vue"
 
 /**
- * 原子化 Tooltip 组件（shadcn 风格）
+ * Tooltip - 原子化增强版根组件
  * 
- * 高度可定制，需要手动组合子组件
+ * 所有增强功能都在原子化组件上实现，支持 disabled、duration 等
  * 
  * @example
  * ```vue
- * <TooltipProvider>
- *   <Tooltip>
+ * <TooltipProvider :delay-duration="500">
+ *   <Tooltip :duration="3000" disabled>
  *     <TooltipTrigger>悬停</TooltipTrigger>
- *     <TooltipContent>提示内容</TooltipContent>
+ *     <TooltipContent theme="success" size="lg">
+ *       提示内容
+ *     </TooltipContent>
  *   </Tooltip>
  * </TooltipProvider>
  * ```
  */
 export { default as Tooltip } from "./Tooltip.vue"
+
+/**
+ * TooltipContent - 原子化增强版内容组件
+ * 
+ * 支持 theme、size、backgroundColor、textColor、maxWidth、showArrow 等
+ */
 export { default as TooltipContent } from "./TooltipContent.vue"
+
+/**
+ * TooltipProvider - 原子化增强版提供者组件
+ * 
+ * 支持 delayDuration、skipDelayDuration、disableHoverableContent 等
+ */
 export { default as TooltipProvider } from "./TooltipProvider.vue"
+
+/**
+ * TooltipTrigger - 触发器组件
+ */
 export { default as TooltipTrigger } from "./TooltipTrigger.vue"
 
 // ============================================================================
