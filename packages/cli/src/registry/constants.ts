@@ -1,8 +1,9 @@
 import type { z } from "zod"
 import type { registryConfigSchema } from "@/src/schema"
 
+// 临时使用 shadcn-vue registry，后续搭建自己的 registry 后替换
 export const REGISTRY_URL
-  = process.env.REGISTRY_URL ?? "https://glacial-ui.dev/r"
+  = process.env.REGISTRY_URL ?? "https://shadcn-vue.com/r"
 
 export const FALLBACK_STYLE = "new-york-v4"
 
