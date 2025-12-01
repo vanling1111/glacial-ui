@@ -8,9 +8,8 @@ export default defineConfig({
     vue(),
     dts({
       insertTypesEntry: true,
-      cleanVueTsc: true,
-      // 跳过类型诊断错误，仍然生成 .d.ts 文件
-      skipDiagnostics: true,
+      // 不在构建时输出类型检查错误
+      logLevel: 'warn',
     }),
   ],
   resolve: {
