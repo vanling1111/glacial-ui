@@ -1,0 +1,267 @@
+@import "tailwindcss";
+
+@theme {
+  /* 
+    Glacial UI 主题变量系统
+    Vercel / Geist 设计系统风格
+    
+    设计理念：
+    - 主色采用纯黑 (#000000)，极简高级
+    - 灰度采用 Neutral 系列，纯净无色调偏差
+    - 语义色采用 Tailwind 标准色，清晰直观
+    - 字体采用 Geist Sans（Vercel 官方字体）
+    - 字号遵循 Vercel 设计规范
+  */
+
+  /* ========== 字体系统 - Vercel/Geist ========== */
+  --font-sans: 'Geist', 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+  --font-mono: 'Geist Mono', 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+
+  /* ========== 字号系统 - Vercel 规范 ========== */
+  --font-size-xs: 0.75rem;      /* 12px */
+  --font-size-sm: 0.875rem;     /* 14px - Vercel 默认正文 */
+  --font-size-base: 0.875rem;   /* 14px - 基础字号 */
+  --font-size-lg: 1rem;         /* 16px */
+  --font-size-xl: 1.125rem;     /* 18px */
+  --font-size-2xl: 1.25rem;     /* 20px */
+  --font-size-3xl: 1.5rem;      /* 24px */
+  --font-size-4xl: 2rem;        /* 32px */
+  --font-size-5xl: 2.5rem;      /* 40px */
+
+  /* 行高 */
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+
+  /* 字重 */
+  --font-weight-thin: 100;
+  --font-weight-extralight: 200;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+
+  /* 字间距 */
+  --letter-spacing-tighter: -0.05em;
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
+  
+  /* ========== 背景色系 ========== */
+  --color-background: hsl(0 0% 100%);
+  --color-foreground: hsl(0 0% 4%);
+
+  --color-card: hsl(0 0% 100%);
+  --color-card-foreground: hsl(0 0% 4%);
+
+  --color-popover: hsl(0 0% 100%);
+  --color-popover-foreground: hsl(0 0% 4%);
+
+  /* ========== 主色调 - 纯黑 ========== */
+  --color-primary: hsl(0 0% 9%);
+  --color-primary-foreground: hsl(0 0% 100%);
+
+  /* ========== 次要色 - Neutral 灰度 ========== */
+  --color-secondary: hsl(0 0% 96%);
+  --color-secondary-foreground: hsl(0 0% 9%);
+
+  --color-muted: hsl(0 0% 96%);
+  --color-muted-foreground: hsl(0 0% 45%);
+
+  --color-accent: hsl(0 0% 96%);
+  --color-accent-foreground: hsl(0 0% 9%);
+
+  /* ========== 语义色 ========== */
+  --color-destructive: hsl(0 84% 60%);
+  --color-destructive-foreground: hsl(0 0% 100%);
+
+  --color-success: hsl(142 71% 45%);
+  --color-success-foreground: hsl(0 0% 100%);
+
+  --color-warning: hsl(38 92% 50%);
+  --color-warning-foreground: hsl(0 0% 100%);
+
+  --color-info: hsl(217 91% 60%);
+  --color-info-foreground: hsl(0 0% 100%);
+
+  /* ========== 边框和输入框 ========== */
+  --color-border: hsl(0 0% 90%);
+  --color-input: hsl(0 0% 90%);
+  --color-ring: hsl(0 0% 9%);
+
+  /* ========== 圆角系统 ========== */
+  --radius: 0.375rem;
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* ========== 阴影系统 - Vercel 风格 ========== */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  
+  /* 组件专用阴影 */
+  --shadow-button: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-button-hover: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-input: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-input-focus: 0 0 0 2px rgba(0, 0, 0, 0.1);
+  --shadow-dropdown: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.1);
+  
+  /* ========== 动画 ========== */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-fade-in: fade-in 0.15s ease-out;
+  --animate-fade-out: fade-out 0.15s ease-in;
+  --animate-scale-in: scale-in 0.15s ease-out;
+  --animate-scale-out: scale-out 0.1s ease-in;
+
+  @keyframes accordion-down {
+    from { height: 0 }
+    to { height: var(--reka-accordion-content-height) }
+  }
+  @keyframes accordion-up {
+    from { height: var(--reka-accordion-content-height) }
+    to { height: 0 }
+  }
+  @keyframes fade-in {
+    from { opacity: 0 }
+    to { opacity: 1 }
+  }
+  @keyframes fade-out {
+    from { opacity: 1 }
+    to { opacity: 0 }
+  }
+  @keyframes scale-in {
+    from { opacity: 0; transform: scale(0.95) }
+    to { opacity: 1; transform: scale(1) }
+  }
+  @keyframes scale-out {
+    from { opacity: 1; transform: scale(1) }
+    to { opacity: 0; transform: scale(0.95) }
+  }
+}
+
+/* 暗色主题 */
+.dark {
+  --color-background: hsl(0 0% 4%);
+  --color-foreground: hsl(0 0% 98%);
+
+  --color-card: hsl(0 0% 4%);
+  --color-card-foreground: hsl(0 0% 98%);
+
+  --color-popover: hsl(0 0% 4%);
+  --color-popover-foreground: hsl(0 0% 98%);
+
+  --color-primary: hsl(0 0% 98%);
+  --color-primary-foreground: hsl(0 0% 9%);
+
+  --color-secondary: hsl(0 0% 15%);
+  --color-secondary-foreground: hsl(0 0% 98%);
+
+  --color-muted: hsl(0 0% 15%);
+  --color-muted-foreground: hsl(0 0% 64%);
+
+  --color-accent: hsl(0 0% 15%);
+  --color-accent-foreground: hsl(0 0% 98%);
+
+  --color-border: hsl(0 0% 15%);
+  --color-input: hsl(0 0% 15%);
+  --color-ring: hsl(0 0% 83%);
+}
+
+/* 基础样式 */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    font-size: 14px;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+  }
+  
+  h1 { font-size: 2.5rem; letter-spacing: -0.03em; }
+  h2 { font-size: 1.714rem; letter-spacing: -0.025em; }
+  h3 { font-size: 1.286rem; }
+  h4 { font-size: 1.143rem; }
+  small { font-size: 0.857rem; }
+  
+  code, kbd, pre, samp {
+    font-family: var(--font-mono);
+    font-size: 0.929rem;
+  }
+  
+  :focus-visible {
+    outline: 2px solid hsl(0 0% 9%);
+    outline-offset: 2px;
+  }
+}
+
+/* 过渡动画 */
+@layer utilities {
+  .glacial-fade-enter-active,
+  .glacial-fade-leave-active {
+    transition: opacity 0.15s ease;
+  }
+  .glacial-fade-enter-from,
+  .glacial-fade-leave-to {
+    opacity: 0;
+  }
+
+  .glacial-zoom-enter-active,
+  .glacial-zoom-leave-active {
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
+  .glacial-zoom-enter-from,
+  .glacial-zoom-leave-to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  .glacial-slide-up-enter-active,
+  .glacial-slide-up-leave-active {
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .glacial-slide-up-enter-from,
+  .glacial-slide-up-leave-to {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  .glacial-slide-down-enter-active,
+  .glacial-slide-down-leave-active {
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .glacial-slide-down-enter-from,
+  .glacial-slide-down-leave-to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+

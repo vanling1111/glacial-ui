@@ -1,0 +1,61 @@
+{
+  "name": "@glacial-ui/cli",
+  "version": "0.0.1",
+  "description": "CLI for adding Glacial UI components to your project",
+  "author": "vanling1111",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "glacial-ui": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "tsup src/index.ts --format esm --watch",
+    "build": "tsup src/index.ts --format esm --dts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@antfu/ni": "^0.23.2",
+    "@clack/prompts": "^0.8.2",
+    "chalk": "^5.4.1",
+    "commander": "^13.0.0",
+    "cosmiconfig": "^9.0.0",
+    "diff": "^7.0.0",
+    "execa": "^9.5.1",
+    "fast-glob": "^3.3.2",
+    "fs-extra": "^11.2.0",
+    "https-proxy-agent": "^7.0.6",
+    "lodash-es": "^4.17.21",
+    "node-fetch": "^3.3.2",
+    "ora": "^8.1.1",
+    "picocolors": "^1.1.1",
+    "prompts": "^2.4.2",
+    "recast": "^0.23.9",
+    "ts-morph": "^24.0.0",
+    "tsconfig-paths": "^4.2.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/diff": "^6.0.0",
+    "@types/fs-extra": "^11.0.4",
+    "@types/lodash-es": "^4.17.12",
+    "@types/node": "^22.10.1",
+    "@types/prompts": "^2.4.9",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "glacial-ui",
+    "vue",
+    "cli",
+    "components"
+  ]
+}
+

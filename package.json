@@ -1,0 +1,27 @@
+{
+  "name": "glacial-ui-monorepo",
+  "version": "0.0.1",
+  "private": true,
+  "description": "A beautiful Vue component library with Vercel-inspired design",
+  "author": "vanling1111",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "pnpm -r dev",
+    "build": "pnpm -r build",
+    "lint": "eslint .",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "typescript": "^5.7.2"
+  },
+  "packageManager": "pnpm@9.14.4",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
+
